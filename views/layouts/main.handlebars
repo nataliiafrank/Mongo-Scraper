@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>Mongo Scraper Vogue Edition</title>
+    <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Compiled and minified CSS -->
@@ -13,10 +15,27 @@
 
     <link rel="stylesheet" href="style.css">
 
-  </head>
-  <body class="container">
-    <h3 class="header">Mongo Scraper</h3>
-    
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">Mongo Scraper</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/saved">Saved Articles</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {{{body}}}
+
     <script src="app.js"></script>
-  </body>
+
+</body>
+
 </html>

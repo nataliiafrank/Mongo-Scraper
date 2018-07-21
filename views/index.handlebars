@@ -1,0 +1,34 @@
+<div class="container">
+    <h3 class="header">Mongo Scraper</h3>
+
+    <a href="#" id="scrape" class="btn blue">Scrape New Articles</a>
+    <button class="btn red clear-all">Clear All Articles</button>
+
+    <div class="articles">
+        <ul>
+            {{#each articles}}
+            <li>
+                <p><span>Title:</span> {{this.title}}</p>
+                <p><a href="{{this.link}}" target="_blank">Link to the article</a></p>
+                <button class="btn save" data-id="{{this.id}}">Save This Article</button>
+            </li>
+            <hr>
+            {{/each}}
+        </ul>
+    </div>
+
+</div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Success</h4>
+      <p>The article was saved</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+  </div>
+
+
+

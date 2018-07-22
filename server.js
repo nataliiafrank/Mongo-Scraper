@@ -114,6 +114,7 @@ app.post("/saved/:id", function(req, res){
         db.SavedArticle.create({
             title: article.title,
             link: article.link,
+            img: article.img
         }).then(function (dbArticle) {
             // View the added result in the console
             console.log(dbArticle);

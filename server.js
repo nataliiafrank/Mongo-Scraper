@@ -14,7 +14,7 @@ const app = express();
 
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({
-    extended: true
+    useNewUrlParser: true 
 }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
@@ -67,18 +67,21 @@ app.get("/scrape", function (req, res) {
 
         // With cheerio, find each p-tag with the "title" class
         // (i: iterator. element: the current element)
-        $("h2.feed-card--title").each(function (i, element) {
+        $("div.feed-card--container").each(function (i, element) {
 
+            const img = $(element).children(".feed-card--image").children("a").children("picture").children("img").attr("srcset");
             // Save the text of the element in a "title" variable
-            const title = $(element).children().text();
+            const title = $(element).children(".feed-card--info").children("h2").children().text();
 
             // In the currently selected element, look at its child elements (i.e., its a-tags),
             // then save the values for any "href" attributes that the child elements may have
-            const link = $(element).children().attr("href");
+            const link = $(element).children(".feed-card--info").children("h2").children().attr("href");
 
+            
             // Save these results in an object that we'll push into the results array we defined earlie
             results.title = title;
             results.link = link;
+            results.img = img;
 
 
             // Log the results once you've looped through each of the elements found with cheerio

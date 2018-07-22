@@ -4,12 +4,12 @@
         <ul>
             {{#each articles}}
             <li>
+                <p><img src="{{this.img}}" alt=""></p>
                 <p><span>Title:</span> {{this.title}}</p>
-                <p><a href="{{this.link}}" target="_blank">Link to the article</a></p>
+                <p><a href="{{this.link}}" target="_blank">Read the article</a></p>
                 <button class="add-note btn" data-id="{{this.id}}">Article Notes</button>
                 <button class="delete-saved btn" data-id="{{this.id}}">Delete from Saved</button>
             </li>
-            
             {{/each}}
         </ul>
     </div>

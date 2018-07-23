@@ -23,17 +23,7 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-// Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/8080");
-
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-// "mongodb://heroku_5trb060h:@ds147011.mlab.com:47011/heroku_5trb060h"
-
-// Set mongoose to leverage built in JavaScript ES6 Promises
-// Connect to the Mongo DB
-// mongoose.Promise = Promise;
+// Connect to the MongoDB for Heroku
 mongoose.connect("mongodb://nataliia:password1@ds147011.mlab.com:47011/heroku_5trb060h");
 
 
@@ -51,7 +41,8 @@ app.get("/", function (req, res) {
         .catch(function (err) {
             // If an error occurred, send it to the client
             res.json(err);
-        });
+        }
+    );
 });
 
 
@@ -105,7 +96,6 @@ app.get("/scrape", function (req, res) {
     });
 });
 
-
 app.post("/saved/:id", function(req, res){
     const id = req.params.id;
 
@@ -144,8 +134,44 @@ app.get("/saved", function(req, res){
         .catch(function (err) {
             // If an error occurred, send it to the client
             res.json(err);
+        }
+    );
+});
+
+app.get("/notes/:id", function(req, res){
+    const thisId = req.params.id;
+    console.log("this is id", thisId);
+    db.SavedArticle.findOne({_id: thisId})
+        // ..and populate all of the notes associated with it
+        .populate("note")
+        .then(function(article) {
+            console.log(article);
+            res.json(article);
+        })
+        .catch(function(err) {
+            res.json(err);
         });
-})
+});
+
+app.post("/notes/:id", function(req, res){
+    const id = req.params.id;
+    const theNote = req.body.note
+    db.Note.create({note: theNote})
+        .then(function(dbNote){
+
+            console.log(id);
+            return db.SavedArticle.findOneAndUpdate({ _id: id }, { note: dbNote._id }, { new: true });
+        })
+        .then(function (dbArticle) {
+            // View the added result in the console
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+            console.log(err);
+
+            res.json(err);
+        });
+});
 
 app.get("/delete/:id", function(req, res){
     db.SavedArticle.remove({

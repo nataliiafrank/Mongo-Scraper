@@ -29,4 +29,5 @@ var Article = mongoose.model("Article", ArticleSchema);
 module.exports = {
     Article: Article,
     SavedArticle: require("./article"),
+    Note: require("./note")
 }

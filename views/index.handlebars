@@ -1,35 +1,45 @@
+<div class="heading">
+    <div class="heading-text">
+        <h3 class="header">Mongo Scraper</h3>
+        <h2 class="header" id="vogue">Vogue Edition</h2>
+    </div>
+    <div class="buttons">
+        <a href="#" id="scrape" class="btn-large red darken-4">Scrape New Articles</a>
+        <button class="btn-large clear-all blue-grey darken-1">Clear All Articles</button>
+    </div>
+</div>
+
+<h2 id="articles-heading">Articles</h2>
+<hr>
 <div class="container">
-    <h3 class="header">Mongo Scraper</h3>
-
-    <a href="#" id="scrape" class="btn blue">Scrape New Articles</a>
-    <button class="btn red clear-all">Clear All Articles</button>
-
     <div class="articles">
         <ul>
             {{#each articles}}
             <li>
-                <p><img src="{{this.img}}" alt=""></p>
-                <p><span>Title:</span> {{this.title}}</p>
-                <p><a href="{{this.link}}" target="_blank">Read the article</a></p>
-                <button class="btn save" data-id="{{this.id}}">Save This Article</button>
+                <p>
+                    <img src="{{this.img}}" alt="">
+                </p>
+                <p>
+                    <span>Title:</span> {{this.title}}</p>
+                <a href="{{this.link}}" target="_blank" class="btn blue-grey lighten-2">Read the article</a>
+                <button class="btn save red darken-4" data-id="{{this.id}}">Save This Article</button>
             </li>
-            <hr>
-            {{/each}}
+            <hr> {{/each}}
         </ul>
     </div>
 
 </div>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+<footer class="center">
+    Vogue Mango scraper ©2018
+</footer>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Success</h4>
-      <p>The article was saved</p>
+        <h4>Success</h4>
+        <p>The article was saved</p>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
     </div>
-  </div>
-
-
-
+</div>

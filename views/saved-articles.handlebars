@@ -1,15 +1,16 @@
 <div class="container">
-    <h3 class="header">Mongo Scraper</h3>
+    <h2 id="articles-heading">Vogue Articles</h2>
     <div class="articles">
         <ul>
             {{#each articles}}
             <li>
                 <p><img src="{{this.img}}" alt=""></p>
                 <p><span>Title:</span> {{this.title}}</p>
-                <p><a href="{{this.link}}" target="_blank">Read the article</a></p>
-                <button class="add-note btn" data-id="{{this.id}}">Article Notes</button>
-                <button class="delete-saved btn" data-id="{{this.id}}">Delete from Saved</button>
+                <a href="{{this.link}}" target="_blank" class="btn blue-grey lighten-2">Read the article</a>
+                <button class="add-note btn blue-grey darken-4" data-id="{{this.id}}">Article Notes</button>
+                <button class="delete-saved btn red darken-4" data-id="{{this.id}}">Delete from Saved</button>
             </li>
+            <hr>
             {{/each}}
         </ul>
     </div>
